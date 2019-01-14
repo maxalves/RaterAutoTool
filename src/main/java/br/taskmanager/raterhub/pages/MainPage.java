@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class MainPage {
 
-	private WebDriver driver;
+	private static WebDriver driver;
 
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
