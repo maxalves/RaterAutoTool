@@ -12,10 +12,10 @@ import org.openqa.selenium.support.ui.Wait;
 
 public class MainPage {
 
-	static WebDriver driver;
+	private WebDriver driver;
 
 	public MainPage(WebDriver driver) {
-		MainPage.driver = driver;
+		this.driver = driver;
 	}
 
 	public void autoRefreshUntilTask() {
