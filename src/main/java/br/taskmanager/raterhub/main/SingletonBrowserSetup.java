@@ -54,10 +54,10 @@ public class SingletonBrowserSetup {
 		}
 	}
 	
-	//Access to instance setup data
-	public static String ChromeDriverLocation() { return SingletonBrowserSetup.chromeDriverLocation; }
-    public static String ChromeExeLocation() { return SingletonBrowserSetup.chromeExeLocation; }
-    public static String UserDataDirLocation() { return SingletonBrowserSetup.userDataDirLocation; } 
-    public static String Port() { return SingletonBrowserSetup.port; } 
+	//getters to instance setup data
+	public static String getChromeDriverLocation() { return chromeDriverLocation; }
+    public static String getChromeExeLocation() { return chromeExeLocation; }
+    public static String getUserDataDirLocation() { return userDataDirLocation; } 
+    public static String getPort() { return port; } 
 
 }

@@ -16,6 +16,7 @@ public class Teste {
 		raterWebpage = new MainPage(driver);
 		raterWebpage.autoRefreshUntilTask();
 		raterWebpage.autoAcquireTask();
+		System.out.println(SingletonBrowserSetup.getChromeDriverLocation());
 		driver.quit();
 	}
 }
