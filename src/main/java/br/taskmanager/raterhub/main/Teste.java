@@ -4,7 +4,7 @@ import org.openqa.selenium.WebDriver;
 
 import br.taskmanager.raterhub.pages.MainPage;
 
-public class teste {
+public class Teste {
 
 	private static MainPage raterWebpage;
 	
