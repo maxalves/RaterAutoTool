@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXToggleButton;
+
 import br.taskmanager.app.main.Launch;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
