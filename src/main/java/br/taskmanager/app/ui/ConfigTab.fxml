@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXToggleButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
+	minHeight="-Infinity" minWidth="-Infinity" prefHeight="445.0"
+	prefWidth="400.0" styleClass="dark-panel"
+	stylesheets="@application.css" xmlns="http://javafx.com/javafx/11.0.1"
+	xmlns:fx="http://javafx.com/fxml/1">
+	<children>
+		<Label layoutX="14.0" layoutY="19.0" text="AUTO REFRESH"
+			textFill="WHITE">
+			<font>
+				<Font name="Montserrat ExtraBold" size="15.0" />
+			</font>
+		</Label>
+		<JFXToggleButton layoutX="308.0" layoutY="30.0"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0"
+			toggleColor="WHITE" toggleLineColor="#f3a978" />
+		<Label layoutX="14.0" layoutY="48.0" maxHeight="-Infinity"
+			maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+			minWidth="-Infinity" prefWidth="248.0"
+			text="Tempo de atualização de página" textFill="WHITE"
+			wrapText="true">
+			<font>
+				<Font name="Montserrat Medium" size="13.0" />
+			</font>
+		</Label>
+		<JFXSlider layoutX="25.0" layoutY="79.0" max="60.0"
+			prefWidth="350.0" showTickMarks="true" />
+		<Label layoutX="14.0" layoutY="115.0" text="AUTO ACQUIRE"
+			textFill="WHITE">
+			<font>
+				<Font name="Montserrat ExtraBold" size="15.0" />
+			</font>
+		</Label>
+		<JFXToggleButton layoutX="308.0" layoutY="126.0"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0"
+			toggleColor="WHITE" toggleLineColor="#f3a978" />
+		<Label layoutX="14.0" layoutY="144.0" maxHeight="-Infinity"
+			maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+			prefHeight="30.0" prefWidth="248.0"
+			text="Pegar tasks automaticamente" textFill="WHITE">
+			<font>
+				<Font name="Montserrat Medium" size="13.0" />
+			</font>
+		</Label>
+		<Label layoutX="14.0" layoutY="186.0" text="OPEN TASK LINKS"
+			textFill="WHITE">
+			<font>
+				<Font name="Montserrat ExtraBold" size="15.0" />
+			</font>
+		</Label>
+		<JFXToggleButton layoutX="308.0" layoutY="197.0"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0"
+			toggleColor="WHITE" toggleLineColor="#f3a978" />
+		<Label layoutX="14.0" layoutY="215.0" maxHeight="-Infinity"
+			maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+			prefHeight="30.0" prefWidth="248.0" text="Abrir links no navegador"
+			textFill="WHITE">
+			<font>
+				<Font name="Montserrat Medium" size="13.0" />
+			</font>
+		</Label>
+		<Label layoutX="14.0" layoutY="258.0" text="AUTO SUBMIT"
+			textFill="WHITE">
+			<font>
+				<Font name="Montserrat ExtraBold" size="15.0" />
+			</font>
+		</Label>
+		<JFXToggleButton layoutX="308.0" layoutY="269.0"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="35.0" prefWidth="65.0"
+			toggleColor="WHITE" toggleLineColor="#f3a978" />
+		<Label layoutX="14.0" layoutY="287.0" maxHeight="-Infinity"
+			maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+			prefWidth="248.0" text="Porcentagem de tempo de task para dar submit"
+			textFill="WHITE" wrapText="true">
+			<font>
+				<Font name="Montserrat Medium" size="13.0" />
+			</font>
+		</Label>
+		<JFXSlider layoutX="25.0" layoutY="338.0" min="40.0"
+			prefWidth="350.0" showTickMarks="true" />
+		<JFXButton layoutX="274.0" layoutY="388.0"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0"
+			styleClass="buttons" text="SALVAR" textFill="WHITE">
+			<font>
+				<Font name="Montserrat Black" size="14.0" />
+			</font>
+		</JFXButton>
+		<JFXButton layoutX="159.0" layoutY="388.0"
+			maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+			minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0"
+			styleClass="buttons" text="FECHAR" textFill="WHITE">
+			<font>
+				<Font name="Montserrat Black" size="14.0" />
+			</font>
+		</JFXButton>
+	</children>
+</AnchorPane>
