@@ -1,4 +1,4 @@
-package br.taskmanager.raterhub.mainpage;
+package br.taskmanager.raterhub.pages;
 
 import java.time.Duration;
 import java.util.function.Function;

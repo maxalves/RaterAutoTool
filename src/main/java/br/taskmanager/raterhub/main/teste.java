@@ -2,7 +2,7 @@ package br.taskmanager.raterhub.main;
 
 import org.openqa.selenium.WebDriver;
 
-import br.taskmanager.raterhub.mainpage.MainPage;
+import br.taskmanager.raterhub.pages.MainPage;
 
 public class teste {
 
