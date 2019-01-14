@@ -10,8 +10,7 @@ public class Teste {
 	
 	public static void main(String[] args) {
 		
-		
-		SingletonBrowserSetup instance = SingletonBrowserSetup.getInstance();
+		SingletonBrowserSetup instance = SingletonBrowserSetup.getInstance("C:\\chromedriver.exe", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\\"", "C:\\selenium\\AutomationProfile", "9222");
 		WebDriver driver = instance.getDriver();
 		
 		raterWebpage = new MainPage(driver);
