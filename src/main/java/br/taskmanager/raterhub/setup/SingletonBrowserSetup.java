@@ -23,9 +23,6 @@ public class SingletonBrowserSetup {
 		System.setProperty("webdriver.chrome.driver", chromeDriverLocation);
 		ChromeOptions options = new ChromeOptions().setExperimentalOption("debuggerAddress", "127.0.0.1:" + port);
 		driver = new ChromeDriver(options);
-		
-		//test page
-		driver.get("C:/Users/max_a/Desktop/HTMLPage1.html");
 	}
 	
 	public WebDriver getDriver() {
