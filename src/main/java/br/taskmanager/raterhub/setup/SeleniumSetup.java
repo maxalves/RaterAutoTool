@@ -38,6 +38,6 @@ public class SeleniumSetup {
 	private void startAutomation() {
 		raterWebpage = new MainPage(driver);
 		raterWebpage.autoRefreshUntilTask(refresh, refreshRate);
-		raterWebpage.autoAcquireTask(acquire);
+		//raterWebpage.autoAcquireTask(acquire);
 	}
 }

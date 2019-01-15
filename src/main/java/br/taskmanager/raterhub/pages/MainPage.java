@@ -34,6 +34,8 @@ public class MainPage {
 	}
 
 	public void autoAcquireTask(boolean acquire) {
-		driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
+		if (acquire) {
+			driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
+		}
 	}
 }
