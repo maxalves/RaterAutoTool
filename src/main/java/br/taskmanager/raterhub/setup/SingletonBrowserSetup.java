@@ -53,11 +53,4 @@ public class SingletonBrowserSetup {
 	        e.printStackTrace();  
 		}
 	}
-	
-	//getters to instance setup data
-	public static String getChromeDriverLocation() { return chromeDriverLocation; }
-    public static String getChromeExeLocation() { return chromeExeLocation; }
-    public static String getUserDataDirLocation() { return userDataDirLocation; } 
-    public static String getPort() { return port; } 
-
 }
