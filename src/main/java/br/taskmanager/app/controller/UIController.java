@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXToggleButton;
 
-import br.taskmanager.app.main.Launch;
+import br.taskmanager.app.main.AppUI;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,16 +43,16 @@ public class UIController implements Initializable {
 		parent.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				Launch.stage.setX(event.getScreenX() - xOffset);
-				Launch.stage.setY(event.getScreenY() - yOffset);
-				Launch.stage.setOpacity(0.7f);
+				AppUI.stage.setX(event.getScreenX() - xOffset);
+				AppUI.stage.setY(event.getScreenY() - yOffset);
+				AppUI.stage.setOpacity(0.7f);
 			}
 		});
 		parent.setOnDragDone((e) -> {
-			Launch.stage.setOpacity(1.0f);
+			AppUI.stage.setOpacity(1.0f);
 		});
 		parent.setOnMouseReleased((e) -> {
-			Launch.stage.setOpacity(1.0f);
+			AppUI.stage.setOpacity(1.0f);
 		});
 
 	}
