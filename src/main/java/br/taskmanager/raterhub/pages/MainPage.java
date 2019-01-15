@@ -18,23 +18,22 @@ public class MainPage {
 		this.driver = driver;
 	}
 
-	public void autoRefreshUntilTask() {
+	public void autoRefreshUntilTask(boolean refresh, Double refreshRate) {
 
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofHours(24))
-				.pollingEvery(Duration.ofSeconds(5)).ignoring(NoSuchElementException.class);
+		if (refresh) {
+			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofHours(24))
+					.pollingEvery(Duration.ofSeconds(refreshRate.intValue())).ignoring(NoSuchElementException.class);
 
-		@SuppressWarnings("unused")
-		WebElement taskAvailable = wait.until(new Function<WebDriver, WebElement>() {
-			public WebElement apply(WebDriver driver) {
-				System.out.println("refresh");
-				driver.navigate().refresh();
-				return driver.findElement(By.className("ewok-rater-task-option"));
-			}
-		});
-
+			WebElement taskAvailable = wait.until(new Function<WebDriver, WebElement>() {
+				public WebElement apply(WebDriver driver) {
+					driver.navigate().refresh();
+					return driver.findElement(By.className("ewok-rater-task-option"));
+				}
+			});
+		}
 	}
 
-	public void autoAcquireTask() {
+	public void autoAcquireTask(boolean acquire) {
 		driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
 	}
 }
