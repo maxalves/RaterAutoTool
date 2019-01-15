@@ -1,11 +1,10 @@
-package br.taskmanager.raterhub.main;
+package br.taskmanager.raterhub.setup;
 
 import org.openqa.selenium.WebDriver;
 
 import br.taskmanager.raterhub.pages.MainPage;
 
-public class Teste {
-
+public class TestSetup {
 	private static MainPage raterWebpage;
 	
 	public static void main(String[] args) {

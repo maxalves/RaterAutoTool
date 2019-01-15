@@ -60,7 +60,7 @@
 				<Font name="Montserrat Black" size="14.0" />
 			</font>
 		</JFXButton>
-		<JFXButton layoutX="159.0" layoutY="388.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="100.0" styleClass="buttons" text="FECHAR" textFill="WHITE">
+		<JFXButton layoutX="159.0" layoutY="388.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#closeBtn" prefHeight="35.0" prefWidth="100.0" styleClass="buttons" text="FECHAR" textFill="WHITE">
 			<font>
 				<Font name="Montserrat Black" size="14.0" />
 			</font>
