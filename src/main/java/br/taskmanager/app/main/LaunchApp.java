@@ -8,7 +8,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-public class AppUI extends Application {
+public class LaunchApp extends Application {
 
 	public static Stage stage = null;
 
@@ -22,5 +22,9 @@ public class AppUI extends Application {
 		this.stage = stage;
 		stage.show();
 		System.out.println("teste");
+	}
+	
+	public static void main(String[] args) {
+		launch(args);
 	}
 }
