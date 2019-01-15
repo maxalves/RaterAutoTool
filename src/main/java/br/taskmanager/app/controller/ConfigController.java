@@ -9,7 +9,9 @@ import com.jfoenix.controls.JFXToggleButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 
 public class ConfigController implements Initializable {
 
@@ -28,7 +30,8 @@ public class ConfigController implements Initializable {
 	}
 
 	@FXML
-	private void close(ActionEvent event) {
+	private void closeBtn(MouseEvent event) {
+		((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
 	}
 	
 	@FXML
