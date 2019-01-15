@@ -19,9 +19,8 @@ public class LaunchApp extends Application {
 		scene.setFill(Color.TRANSPARENT);
 		stage.setScene(scene);
 		stage.initStyle(StageStyle.TRANSPARENT);
-		this.stage = stage;
+		LaunchApp.stage = stage;
 		stage.show();
-		System.out.println("teste");
 	}
 	
 	public static void main(String[] args) {
