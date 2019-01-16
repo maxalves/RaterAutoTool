@@ -41,7 +41,7 @@ public class SingletonBrowserSetup {
 		return instance;
 	}
 	
-	private void openBrowserCMD() {
+	private static void openBrowserCMD() {
 		try {
 			String str ="start /d \""+ chromeExeLocation + " chrome.exe --remote-debugging-port=" + port + " --user-data-dir=" + "\"" + userDataDirLocation;
 		    Runtime.getRuntime().exec(new String[]{"cmd.exe", "/c",str});
