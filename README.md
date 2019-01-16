@@ -4,7 +4,7 @@ This is an under development automation tool to track time worked as a Quality R
 
 ## Getting Started
 
-The project is under development but if you want to fork and get it running to work in some features go for it.
+The project is under development but if you want to fork and get it running, go for it!
 
 ### Prerequisites
 
