@@ -1,6 +1,8 @@
 package br.taskmanager.raterhub.setup;
 
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
 
 import br.taskmanager.raterhub.pages.MainPage;
 
@@ -13,7 +15,6 @@ public class SeleniumSetup {
 	private String chromeExeLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\\"";
 	private String userDataDirLocation = "C:\\selenium\\AutomationProfile";
 	private String port = "9222";
-	private String mainURL = "http://www.raterhub.com";
 
 	public void seleniumWebDriverConfig(boolean refresh, boolean acquire, boolean openTaskLinks, boolean submit,
 			Double refreshRate, Double submitPercentage) {
@@ -43,14 +44,42 @@ public class SeleniumSetup {
 	}
 
 	private void startAutomation() {
+		System.out.println(driver.toString());
+		raterWebpage = new MainPage(driver);
+		driver.get(raterWebpage.mainURL);
+		System.out.println(driver.toString());
+		for (;;) {
+			try {
+				raterWebpage.autoRefreshUntilTask(refresh, refreshRate);
+				raterWebpage.autoAcquireTask(acquire);
+			} catch (TimeoutException e) {
+				System.out.println("Automation Timeout");
+				waitAndSync();
+			} catch (WebDriverException e) {
+				System.out.println("Selenium Thread Stopped");
+				waitAndSync();
+			}
+		}
+	}
+
+	private void waitAndSync() {
 		try {
-			driver.get(mainURL);
-			raterWebpage = new MainPage(driver);
-			raterWebpage.autoRefreshUntilTask(refresh, refreshRate, mainURL);
-			raterWebpage.autoAcquireTask(acquire, mainURL);
-		} catch (RuntimeException e) {
-			closeSelenium();
-			System.out.println("Erro na automaçao");
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			Thread.currentThread().interrupt();
+			throw new RuntimeException(e);
+		}
+	}
+
+	// Check if it's a mainpage and returns false if it isn't
+	private boolean isMainPage() {
+		boolean taskURL = driver.getCurrentUrl().contains("/task/show/");
+		boolean mainpageURL = driver.getCurrentUrl().contains("https://www.raterhub.com/evaluation/rater");
+
+		if (!taskURL && mainpageURL) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
