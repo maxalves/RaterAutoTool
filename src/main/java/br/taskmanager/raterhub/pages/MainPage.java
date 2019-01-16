@@ -43,7 +43,7 @@ public class MainPage {
 	// Waits until task button shows even if autorefresh is disabled
 	public void autoAcquireTask(boolean acquire) throws TimeoutException {
 		if (acquire && isMainPage()) {
-			WebDriverWait wait = new WebDriverWait(driver, 15);
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			System.out.println("esperando aparecer");
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("ul.ewok-rater-task-option>li>a")));
 			driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
