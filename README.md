@@ -1,10 +1,10 @@
-# Project Title
+# Rater Automation Tool
 
-One Paragraph of project description goes here
+This is an under development automation tool to track time worked as a Quality Rater for Appen/Leap/Lion. It offers similar features to LBTimer chrome extension but as a desktop application.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+The project is under development but if you want to fork and get it running to work in some features go for it.
 
 ### Prerequisites
 
