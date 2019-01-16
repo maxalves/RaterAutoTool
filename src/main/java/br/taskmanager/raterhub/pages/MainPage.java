@@ -17,9 +17,12 @@ public class MainPage {
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
 	}
-
-	public void autoRefreshUntilTask(boolean refresh, Double refreshRate) {
-
+	
+	//If mainURL != current URL then it doesn't refresh
+	public void autoRefreshUntilTask(boolean refresh, Double refreshRate, String mainURL) {
+		
+		String teste = driver.getCurrentUrl();
+		
 		if (refresh) {
 			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofHours(24))
 					.pollingEvery(Duration.ofSeconds(refreshRate.intValue())).ignoring(NoSuchElementException.class);
@@ -33,7 +36,7 @@ public class MainPage {
 		}
 	}
 
-	public void autoAcquireTask(boolean acquire) {
+	public void autoAcquireTask(boolean acquire, String mainURL) {
 		if (acquire) {
 			driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
 		}
