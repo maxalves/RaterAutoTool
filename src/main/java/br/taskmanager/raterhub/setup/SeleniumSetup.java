@@ -44,10 +44,9 @@ public class SeleniumSetup {
 	}
 
 	private void startAutomation() {
-		System.out.println(driver.toString());
 		raterWebpage = new MainPage(driver);
 		driver.get(raterWebpage.mainURL);
-		System.out.println(driver.toString());
+
 		for (;;) {
 			try {
 				raterWebpage.autoRefreshUntilTask(refresh, refreshRate);
@@ -68,18 +67,6 @@ public class SeleniumSetup {
 		} catch (InterruptedException e) {
 			Thread.currentThread().interrupt();
 			throw new RuntimeException(e);
-		}
-	}
-
-	// Check if it's a mainpage and returns false if it isn't
-	private boolean isMainPage() {
-		boolean taskURL = driver.getCurrentUrl().contains("/task/show/");
-		boolean mainpageURL = driver.getCurrentUrl().contains("https://www.raterhub.com/evaluation/rater");
-
-		if (!taskURL && mainpageURL) {
-			return true;
-		} else {
-			return false;
 		}
 	}
 }
