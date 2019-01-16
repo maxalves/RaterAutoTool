@@ -16,7 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
 
 	private WebDriver driver;
-	public String mainURL = "https://raterhub.com/evaluation/rater";
+	public String mainURL = "https://www.raterhub.com/evaluation/rater";
 
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
@@ -41,9 +41,9 @@ public class MainPage {
 	}
 
 	// Waits until task button shows even if autorefresh is disabled
-	public void autoAcquireTask(boolean acquire) throws TimeoutException{
-		if (acquire && isMainPage()) { 
-			WebDriverWait wait = new WebDriverWait(driver,  10);
+	public void autoAcquireTask(boolean acquire) throws TimeoutException {
+		if (acquire && isMainPage()) {
+			WebDriverWait wait = new WebDriverWait(driver, 10);
 			System.out.println("esperando aparecer");
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("ul.ewok-rater-task-option>li>a")));
 			driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
@@ -53,7 +53,7 @@ public class MainPage {
 	// Check if it's a mainpage and returns false if it isn't
 	private boolean isMainPage() {
 		boolean taskURL = driver.getCurrentUrl().contains("/task/show/");
-		boolean mainpageURL = driver.getCurrentUrl().contains("C:/Users/max_a/Desktop/HTMLPage");
+		boolean mainpageURL = driver.getCurrentUrl().contains(mainURL);
 
 		if (!taskURL && mainpageURL) {
 			return true;
