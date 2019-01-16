@@ -15,7 +15,6 @@ JDK 11                - https://www.oracle.com/technetwork/java/javase/downloads
 JavaFx 11 or superior - https://gluonhq.com/products/javafx/
 Latest ChromeDriver   - http://chromedriver.chromium.org/downloads
 Updated Chrome Browser installed
-Under Development!
 
 ```
 
