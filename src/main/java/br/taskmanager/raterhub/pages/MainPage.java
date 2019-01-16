@@ -17,7 +17,7 @@ public class MainPage {
 
 	private WebDriver driver;
 	public String mainURL = "https://www.raterhub.com/evaluation/rater";
-
+	
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -52,9 +52,9 @@ public class MainPage {
 
 	// Check if it's a mainpage and returns false if it isn't
 	private boolean isMainPage() {
-		boolean taskURL = driver.getCurrentUrl().contains("/task/show/");
+		boolean taskURL = driver.getCurrentUrl().contains("/task/show");
 		boolean mainpageURL = driver.getCurrentUrl().contains(mainURL);
-
+		
 		if (!taskURL && mainpageURL) {
 			return true;
 		} else {
