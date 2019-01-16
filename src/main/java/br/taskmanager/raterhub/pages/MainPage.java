@@ -21,6 +21,7 @@ public class MainPage {
 	//If mainURL != current URL then it doesn't refresh
 	public void autoRefreshUntilTask(boolean refresh, Double refreshRate, String mainURL) {
 		
+		//Trying to figure how to test if i am in a specific page
 		String teste = driver.getCurrentUrl();
 		
 		if (refresh) {
