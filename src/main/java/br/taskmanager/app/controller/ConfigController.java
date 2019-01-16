@@ -41,7 +41,7 @@ public class ConfigController implements Initializable {
 		sendConfigData.restart();
 	}
 
-	// thread responsible to send configuration data to SeleniumSetup.class
+	//thread responsible to send configuration data to SeleniumSetup.class
 	Service<Void> sendConfigData = new Service<Void>() {
 		@Override
 		protected Task<Void> createTask() {
