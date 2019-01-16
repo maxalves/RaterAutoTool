@@ -6,13 +6,14 @@ import br.taskmanager.raterhub.pages.MainPage;
 
 public class SeleniumSetup {
 	private MainPage raterWebpage;
-	private WebDriver driver;
+	private WebDriver driver = null;
 	private boolean refresh, acquire, openTaskLinks, submit;
 	private Double refreshRate, submitPercentage;
 	private String chromeDriverLocation = "C:\\chromedriver.exe";
 	private String chromeExeLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\\"";
 	private String userDataDirLocation = "C:\\selenium\\AutomationProfile";
 	private String port = "9222";
+	private String mainURL = "http://www.raterhub.com";
 
 	public void seleniumWebDriverConfig(boolean refresh, boolean acquire, boolean openTaskLinks, boolean submit,
 			Double refreshRate, Double submitPercentage) {
@@ -31,17 +32,22 @@ public class SeleniumSetup {
 	}
 
 	public void closeSelenium() {
-		driver.close();
-		driver.quit();
+
+		if (driver != null) {
+			driver.close();
+		}
+	}
+
+	public WebDriver getDriver() {
+		return driver;
 	}
 
 	private void startAutomation() {
 		try {
-			// driver.get("C:/Users/max_a/Desktop/HTMLPage1.html");
-			driver.get("http://www.raterhub.com");
+			driver.get(mainURL);
 			raterWebpage = new MainPage(driver);
-			raterWebpage.autoRefreshUntilTask(refresh, refreshRate);
-			raterWebpage.autoAcquireTask(acquire);
+			raterWebpage.autoRefreshUntilTask(refresh, refreshRate, mainURL);
+			raterWebpage.autoAcquireTask(acquire, mainURL);
 		} catch (RuntimeException e) {
 			closeSelenium();
 			System.out.println("Erro na automaçao");
