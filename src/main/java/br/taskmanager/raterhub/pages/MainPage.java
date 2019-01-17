@@ -16,8 +16,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
 
 	private WebDriver driver;
+	private String selectorTaskAvailable = "div[class='container'] ul";
+	private String selectorAcquire = "ul.ewok-rater-task-option>li>a";
 	public String mainURL = "https://www.raterhub.com/evaluation/rater";
-	
+
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -29,9 +31,12 @@ public class MainPage {
 
 			wait.until(new Function<WebDriver, WebElement>() {
 				public WebElement apply(WebDriver driver) {
+					// check if it's main page then checks if there are tasks in the page
 					if (isMainPage()) {
-						driver.navigate().refresh();
-						return driver.findElement(By.className("ewok-rater-task-option"));
+						if (driver.findElements(By.cssSelector(selectorTaskAvailable)).size() == 0) {
+							driver.navigate().refresh();
+						}
+						return driver.findElement(By.cssSelector(selectorTaskAvailable));
 					} else {
 						return null;
 					}
@@ -43,10 +48,10 @@ public class MainPage {
 	// Waits until task button shows even if autorefresh is disabled
 	public void autoAcquireTask(boolean acquire) throws TimeoutException {
 		if (acquire && isMainPage()) {
-			WebDriverWait wait = new WebDriverWait(driver, 10);
+			WebDriverWait wait = new WebDriverWait(driver, 2);
 			System.out.println("esperando aparecer");
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("ul.ewok-rater-task-option>li>a")));
-			driver.findElement(By.cssSelector("ul.ewok-rater-task-option>li>a")).click();
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selectorAcquire)));
+			driver.findElement(By.cssSelector(selectorAcquire)).click();
 		}
 	}
 
@@ -54,7 +59,7 @@ public class MainPage {
 	private boolean isMainPage() {
 		boolean taskURL = driver.getCurrentUrl().contains("/task/show");
 		boolean mainpageURL = driver.getCurrentUrl().contains(mainURL);
-		
+
 		if (!taskURL && mainpageURL) {
 			return true;
 		} else {
