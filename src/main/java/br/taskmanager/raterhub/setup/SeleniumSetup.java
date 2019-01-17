@@ -33,10 +33,13 @@ public class SeleniumSetup {
 	}
 
 	public void closeSelenium() {
-
-		if (driver != null) {
+		try {
 			driver.close();
+		} catch (RuntimeException e) {
+			System.out.println("Driver is already closed!");
+			Thread.currentThread().interrupt();
 		}
+
 	}
 
 	public WebDriver getDriver() {
@@ -51,6 +54,7 @@ public class SeleniumSetup {
 			try {
 				raterWebpage.autoRefreshUntilTask(refresh, refreshRate);
 				raterWebpage.autoAcquireTask(acquire);
+				waitAndSync();
 			} catch (TimeoutException e) {
 				System.out.println("Automation Timeout");
 				waitAndSync();
