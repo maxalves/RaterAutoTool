@@ -52,7 +52,7 @@ public class MainPage {
 			WebDriverWait wait = new WebDriverWait(driver, 2);
 			Toolkit.getDefaultToolkit().beep();
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selectorAcquire)));
-			driver.findElement(By.cssSelector(selectorAcquire)).sendKeys(Keys.ENTER);;
+			driver.findElement(By.cssSelector(selectorAcquire)).sendKeys(Keys.ENTER);
 		}
 	}
 
