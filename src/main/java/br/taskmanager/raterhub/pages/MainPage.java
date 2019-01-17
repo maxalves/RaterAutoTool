@@ -1,9 +1,11 @@
 package br.taskmanager.raterhub.pages;
 
+import java.awt.Toolkit;
 import java.time.Duration;
 import java.util.function.Function;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -17,7 +19,7 @@ public class MainPage {
 
 	private WebDriver driver;
 	private String selectorTaskAvailable = "div[class='container'] ul";
-	private String selectorAcquire = "ul.ewok-rater-task-option>li>a";
+	private String selectorAcquire = "div[class='container'] ul.ewok-rater-task-option>li>a";
 	public String mainURL = "https://www.raterhub.com/evaluation/rater";
 
 	public MainPage(WebDriver driver) {
@@ -31,7 +33,6 @@ public class MainPage {
 
 			wait.until(new Function<WebDriver, WebElement>() {
 				public WebElement apply(WebDriver driver) {
-					// check if it's main page then checks if there are tasks in the page
 					if (isMainPage()) {
 						if (driver.findElements(By.cssSelector(selectorTaskAvailable)).size() == 0) {
 							driver.navigate().refresh();
@@ -49,18 +50,19 @@ public class MainPage {
 	public void autoAcquireTask(boolean acquire) throws TimeoutException {
 		if (acquire && isMainPage()) {
 			WebDriverWait wait = new WebDriverWait(driver, 2);
-			System.out.println("esperando aparecer");
+			Toolkit.getDefaultToolkit().beep();
 			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selectorAcquire)));
-			driver.findElement(By.cssSelector(selectorAcquire)).click();
+			driver.findElement(By.cssSelector(selectorAcquire)).sendKeys(Keys.ENTER);;
 		}
 	}
 
 	// Check if it's a mainpage and returns false if it isn't
 	private boolean isMainPage() {
 		boolean taskURL = driver.getCurrentUrl().contains("/task/show");
+		boolean taskURL2 = driver.getCurrentUrl().contains("/task/new");
 		boolean mainpageURL = driver.getCurrentUrl().contains(mainURL);
 
-		if (!taskURL && mainpageURL) {
+		if (!taskURL && mainpageURL && !taskURL2) {
 			return true;
 		} else {
 			return false;
