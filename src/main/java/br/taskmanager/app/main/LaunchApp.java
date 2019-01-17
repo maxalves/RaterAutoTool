@@ -22,7 +22,7 @@ public class LaunchApp extends Application {
 		LaunchApp.stage = stage;
 		stage.show();
 	}
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}
