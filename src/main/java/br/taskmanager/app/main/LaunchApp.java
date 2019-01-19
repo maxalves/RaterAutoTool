@@ -14,7 +14,8 @@ public class LaunchApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/br/taskmanager/app/ui/UI.fxml"));
+		//Parent root = FXMLLoader.load(getClass().getResource("/br/taskmanager/app/ui/UI.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/br/taskmanager/app/dao/taskteste.fxml"));
 		Scene scene = new Scene(root);
 		scene.setFill(Color.TRANSPARENT);
 		stage.setScene(scene);
