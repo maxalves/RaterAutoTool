@@ -1,19 +1,20 @@
 package br.taskmanager.app.model;
 
-import java.util.Calendar;
+import java.time.LocalDate;
+
 
 public class Task {
 
-	private Long id;
+	private int id;
 	private String type;
 	private Double time;
-	private Calendar date;
+	private LocalDate date;
 
-	public Long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
@@ -33,11 +34,11 @@ public class Task {
 		this.time = time;
 	}
 
-	public Calendar getDate() {
+	public LocalDate getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
-		this.date = date;
+	public void setDate(LocalDate data) {
+		this.date = data;
 	}
 }
