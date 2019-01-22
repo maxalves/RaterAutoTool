@@ -5,16 +5,16 @@ import java.time.LocalDate;
 
 public class Task {
 
-	private int id;
+	private long id;
 	private String type;
 	private Double time;
 	private LocalDate date;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
