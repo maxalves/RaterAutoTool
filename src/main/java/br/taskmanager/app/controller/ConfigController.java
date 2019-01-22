@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXToggleButton;
 
-import br.taskmanager.raterhub.setup.SeleniumSetup;
+import br.taskmanager.selenium.setup.SeleniumStartup;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -22,7 +22,7 @@ public class ConfigController implements Initializable {
 	@FXML
 	private JFXToggleButton refreshToggle, acquireToggle, openLinksToggle, submitToggle;
 
-	private SeleniumSetup seleniumSetup = new SeleniumSetup();
+	private SeleniumStartup seleniumSetup = new SeleniumStartup();
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -39,7 +39,7 @@ public class ConfigController implements Initializable {
 		sendConfigData.restart();
 	}
 
-	// thread responsible to send configuration data to SeleniumSetup.class
+	// thread responsible to send configuration data to SeleniumStartup.class
 	Service<Void> sendConfigData = new Service<Void>() {
 		@Override
 		protected Task<Void> createTask() {
