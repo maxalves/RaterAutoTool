@@ -1,4 +1,4 @@
-package br.taskmanager.raterhub.setup;
+package br.taskmanager.selenium.setup;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
