@@ -20,7 +20,7 @@
 				<Font name="Montserrat Medium" size="13.0" />
 			</font>
 		</Label>
-		<JFXSlider fx:id="refreshSlider" layoutX="25.0" layoutY="79.0" majorTickUnit="10.0" max="30.0" min="1.0" minorTickCount="5" prefWidth="350.0" showTickMarks="true" />
+		<JFXSlider fx:id="refreshSlider" layoutX="25.0" layoutY="79.0" majorTickUnit="10.0" max="30.0" min="3.0" minorTickCount="5" prefWidth="350.0" showTickMarks="true" />
 		<Label layoutX="14.0" layoutY="115.0" text="AUTO ACQUIRE" textFill="WHITE">
 			<font>
 				<Font name="Montserrat ExtraBold" size="15.0" />
