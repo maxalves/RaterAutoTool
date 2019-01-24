@@ -22,11 +22,10 @@ public class TaskDao {
 	}
 
 	public void add(Task task) {
-		String sql = "insert into task " + "(id, type,time,date) " + " values(?,?,?,CURRENT_DATE)";
-
+		String sql = "insert into task " + "(taskid, type,time,date) " + " values(?,?,?,CURRENT_DATE)";
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
-			stmt.setInt(1, (int)task.getId());
+			stmt.setLong(1, task.getId());
 			stmt.setString(2, task.getType());
 			stmt.setDouble(3, task.getTime());
 			stmt.execute();
@@ -43,7 +42,7 @@ public class TaskDao {
 			List<Task> tasks = new ArrayList<Task>();
 			while (rs.next()) {
 				Task task = new Task();
-				task.setId(rs.getInt("id"));
+				task.setId(rs.getLong("taskid"));
 				task.setType(rs.getString("type"));
 				task.setTime(rs.getDouble("time"));
 				String date = rs.getString("date");
@@ -82,6 +81,29 @@ public class TaskDao {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
+	}
+	
+	public List<Task> getlastThreeTasksAdded(){
+		try {
+			PreparedStatement stmt = connection.prepareStatement("select * from task order by id desc limit 3");
+			ResultSet rs = stmt.executeQuery();
+			List<Task> tasks = new ArrayList<Task>();
+			while (rs.next()) {
+				Task task = new Task();
+				String date = rs.getString("date");
+				task.setDate(convertToLocalDate(date));
+				task.setType(rs.getString("type"));
+				task.setTime(rs.getDouble("time"));
+				task.setId(rs.getLong("taskid"));
+				tasks.add(task);
+			}
+			rs.close();
+			stmt.close();
+			return tasks;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		
 	}
 
 	public Double sumWeek() {
