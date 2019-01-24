@@ -21,7 +21,7 @@ public class MainPage {
 	private String selectorTaskAvailable = "div[class='container'] ul";
 	private String selectorAcquire = "div[class='container'] ul.ewok-rater-task-option>li>a";
 
-	public MainPage(WebDriver driver, String mainURL) {
+	public MainPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
