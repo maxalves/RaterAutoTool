@@ -7,7 +7,8 @@ public class TaskInfo {
 	private LocalDate date;
 	private String type;
 	private int numberCompleted;
-
+	private Double totalTime;
+	
 	public int getNumberCompleted() {
 		return numberCompleted;
 	}
@@ -15,8 +16,6 @@ public class TaskInfo {
 	public void setNumberCompleted(int numberCompleted) {
 		this.numberCompleted = numberCompleted;
 	}
-
-	private Double totalTime;
 
 	public LocalDate getDate() {
 		return date;
