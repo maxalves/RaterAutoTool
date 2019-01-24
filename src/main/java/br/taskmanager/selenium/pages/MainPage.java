@@ -18,9 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
 
 	private WebDriver driver;
-	private String selectorTaskAvailable = "div[class='container'] ul";
-	private String selectorAcquire = "div[class='container'] ul.ewok-rater-task-option>li>a";
-
+	
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
 	}
@@ -33,7 +31,7 @@ public class MainPage {
 			wait.until(new Function<WebDriver, WebElement>() {
 				public WebElement apply(WebDriver driver) {
 						driver.navigate().refresh();
-						return driver.findElement(By.cssSelector(selectorTaskAvailable));
+						return driver.findElement(By.cssSelector("div[class='container'] ul"));
 				}
 			});
 		}
@@ -44,8 +42,8 @@ public class MainPage {
 		if (acquire) {
 			WebDriverWait wait = new WebDriverWait(driver, 2);
 			Toolkit.getDefaultToolkit().beep();
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(selectorAcquire)));
-			driver.findElement(By.cssSelector(selectorAcquire)).sendKeys(Keys.ENTER);
+			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='container'] ul.ewok-rater-task-option>li>a")));
+			driver.findElement(By.cssSelector("div[class='container'] ul.ewok-rater-task-option>li>a")).sendKeys(Keys.ENTER);
 		}
 	}
 }
