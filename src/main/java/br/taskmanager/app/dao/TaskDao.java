@@ -1,5 +1,7 @@
 package br.taskmanager.app.dao;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -72,7 +74,7 @@ public class TaskDao {
 				taskInfo.setDate(convertToLocalDate(date));
 				taskInfo.setType(rs.getString("type"));
 				taskInfo.setNumberCompleted(rs.getInt("numberCompleted"));
-				taskInfo.setTotalTime(rs.getDouble("totalTime"));
+				taskInfo.setTotalTime(roundDouble(rs.getDouble("totalTime")));
 				tasks.add(taskInfo);
 			}
 			rs.close();
@@ -116,7 +118,7 @@ public class TaskDao {
 			value = rs.getDouble("weekTime");
 			rs.close();
 			stmt.close();
-			return value;
+			return roundDouble(value);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
@@ -132,11 +134,16 @@ public class TaskDao {
 			value = rs.getDouble("monthTime");
 			rs.close();
 			stmt.close();
-			return value;
+			return roundDouble(value);
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}
 
+	}
+	
+	private Double roundDouble(Double value) {
+		value = BigDecimal.valueOf(value).setScale(2, RoundingMode.HALF_UP).doubleValue();
+		return value;
 	}
 
 	private LocalDate convertToLocalDate(String dateToConvert) {
