@@ -8,7 +8,7 @@ public class SingletonBrowserSetup {
 	
 	private static SingletonBrowserSetup instance = null;
 	
-	private static WebDriver driver;
+	private WebDriver driver;
 	private static String chromeDriverLocation;
 	private static String chromeExeLocation;
 	private static String userDataDirLocation;

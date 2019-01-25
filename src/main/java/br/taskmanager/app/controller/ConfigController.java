@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXToggleButton;
 
 import br.taskmanager.selenium.setup.SeleniumStartup;
+import br.taskmanager.selenium.setup.SingletonBrowserSetup;
 import javafx.concurrent.Service;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -21,11 +22,18 @@ public class ConfigController implements Initializable {
 	private JFXSlider refreshSlider, submitSlider;
 	@FXML
 	private JFXToggleButton refreshToggle, acquireToggle, openLinksToggle, submitToggle;
-
+	private String chromeDriverLocation = "C:\\chromedriver.exe";
+	private String chromeExeLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\\"";
+	private String userDataDirLocation = "C:\\selenium\\AutomationProfile";
+	private String port = "9222";
+	
 	private SeleniumStartup seleniumSetup = new SeleniumStartup();
+	SingletonBrowserSetup instance;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
+		instance = SingletonBrowserSetup.getInstance(chromeDriverLocation, chromeExeLocation,
+				userDataDirLocation, port);
 	}
 
 	@FXML
@@ -46,9 +54,7 @@ public class ConfigController implements Initializable {
 			return new Task<Void>() {
 				@Override
 				protected Void call() throws Exception {
-					seleniumSetup.seleniumWebDriverConfig(refreshToggle.isSelected(), acquireToggle.isSelected(),
-							openLinksToggle.isSelected(), submitToggle.isSelected(), refreshSlider.getValue(),
-							submitSlider.getValue());
+					seleniumSetup.seleniumWebDriverConfig(instance);
 					return null;
 				}
 			};

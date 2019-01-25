@@ -13,43 +13,26 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXToggleButton;
+
 import br.taskmanager.app.connectionfactory.ConnectionFactory;
+import br.taskmanager.app.controller.ConfigController;
 import br.taskmanager.app.dao.TaskDao;
 import br.taskmanager.app.model.Task;
 import br.taskmanager.selenium.pages.MainPage;
 import br.taskmanager.selenium.pages.TaskPage;
+import javafx.fxml.FXML;
 
 public class SeleniumStartup {
-	Connection connection = ConnectionFactory.connector();
-	private TaskDao taskDao = new TaskDao(connection);
 	private MainPage mainPage;
 	private TaskPage taskPage;
 	private WebDriver driver;
-	private boolean refresh, acquire, openTaskLinks, submit;
-	private Double refreshRate, submitPercentage;
-	private String chromeDriverLocation = "C:\\chromedriver.exe";
-	private String chromeExeLocation = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\\"";
-	private String userDataDirLocation = "C:\\selenium\\AutomationProfile";
-	private String port = "9222";
+	
 	private String mainURL = "https://www.raterhub.com/evaluation/rater";
 
-	public void seleniumWebDriverConfig(boolean refresh, boolean acquire, boolean openTaskLinks, boolean submit,
-			Double refreshRate, Double submitPercentage) {
-		this.refresh = refresh;
-		this.acquire = acquire;
-		this.openTaskLinks = openTaskLinks;
-		this.submit = submit;
-		this.refreshRate = refreshRate;
-		this.submitPercentage = submitPercentage;
-
-		SingletonBrowserSetup instance = SingletonBrowserSetup.getInstance(chromeDriverLocation, chromeExeLocation,
-				userDataDirLocation, port);
+	public void seleniumWebDriverConfig(SingletonBrowserSetup instance) {
 		driver = instance.getDriver();
-		mainPage = new MainPage(driver);
-		taskPage = new TaskPage(driver);
-		driver.get(mainURL);
-
-		startAutomation();
 	}
 
 	public void closeSelenium() {
@@ -66,11 +49,13 @@ public class SeleniumStartup {
 
 	}
 
-	public WebDriver getDriver() {
-		return driver;
-	}
-
-	private void startAutomation() {
+	public void startAutomation() {
+		Connection connection = ConnectionFactory.connector();
+		TaskDao taskDao = new TaskDao(connection);
+		mainPage = new MainPage(driver);
+		taskPage = new TaskPage(driver);
+		driver.get(mainURL);
+		
 		for (;;) {
 			try {
 				if (whatPageIamAt() == "mainpage") {
