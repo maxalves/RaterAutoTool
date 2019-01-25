@@ -46,17 +46,9 @@ public class TaskPage {
 			String url;
 
 			for (WebElement element : items) {
-				url = element.getAttribute("old-href");
+				url = element.getAttribute("data-oldhref");
 				if (url != null) {
 					((JavascriptExecutor) driver).executeScript("window.open('" + url + "');");
-
-					if (items.size() > 10) {
-						try {
-							Thread.sleep(1000);
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-					}
 				}
 			}
 			driver.switchTo().window(tabs.get(0));
