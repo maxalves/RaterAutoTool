@@ -12,6 +12,7 @@ import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
+
 import br.taskmanager.app.connectionfactory.ConnectionFactory;
 import br.taskmanager.app.dao.TaskDao;
 import br.taskmanager.app.model.Task;
@@ -19,11 +20,11 @@ import br.taskmanager.selenium.pages.MainPage;
 import br.taskmanager.selenium.pages.TaskPage;
 
 public class SeleniumStartup {
-	private MainPage mainPage;
-	private TaskPage taskPage;
 	Connection connection = ConnectionFactory.connector();
 	private TaskDao taskDao = new TaskDao(connection);
-	private WebDriver driver = null;
+	private MainPage mainPage;
+	private TaskPage taskPage;
+	private WebDriver driver;
 	private boolean refresh, acquire, openTaskLinks, submit;
 	private Double refreshRate, submitPercentage;
 	private String chromeDriverLocation = "C:\\chromedriver.exe";
@@ -87,7 +88,6 @@ public class SeleniumStartup {
 						}
 					}
 				}
-				System.out.println("Sync -> Restart");
 				waitAndSync();
 			} catch (NoSuchElementException e) {
 				System.out.println("Element not Found");
@@ -98,30 +98,42 @@ public class SeleniumStartup {
 			} catch (WebDriverException e) {
 				System.out.println("Selenium Stopped -> Retry");
 				waitAndSync();
+			} catch (RuntimeException e) {
+				System.out.println("Error! -> Close Selenium");
+				closeSelenium();
 			}
 		}
 	}
 
 	private void waitUntilSubmitTime(Task task) {
+		
 		ExpectedCondition<Boolean> timeCondition = new ExpectedCondition<Boolean>() {
+			boolean alreadySubmitted = false;
 			public Boolean apply(WebDriver driver) {
-				if (formatTimeAsDouble(taskPage.getCurrentTime()) >= considerSubmitPercentage(task.getTime())) {
-					System.out.println("Autosubmit Task!");
-					Toolkit.getDefaultToolkit().beep();
-					taskPage.submit();
-					return true;
-				} else if (driver.getCurrentUrl().contains(String.valueOf(task.getId()))) {
-					//if i am still in the same page then user didn't submit yet
-					return false;
-				} else {
+				try {
+					if (formatTimeAsDouble(taskPage.getCurrentTime()) >= considerSubmitPercentage(task.getTime()) && alreadySubmitted == false) {
+						System.out.println("Autosubmit Task!");
+						Toolkit.getDefaultToolkit().beep();
+						taskPage.submit();
+						alreadySubmitted = true;
+						return alreadySubmitted;
+					} else if (driver.getCurrentUrl().contains(String.valueOf(task.getId()))) {
+						System.out.println("still same page");
+						// if i am still in the same page then user didn't submit yet
+						return false;
+					} else {
+						System.out.println("User submitted task!");
+						return true;
+					}
+				} catch (NoSuchElementException e) {
 					System.out.println("User submitted task!");
 					return true;
 				}
 			}
 		};
 
-		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofMinutes(task.getTime().intValue()+1))
-				.pollingEvery(Duration.ofSeconds(1)).ignoring(NoSuchElementException.class);
+		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+				.withTimeout(Duration.ofMinutes(task.getTime().intValue() + 1)).pollingEvery(Duration.ofSeconds(1));
 
 		wait.until(timeCondition);
 	}
@@ -135,7 +147,7 @@ public class SeleniumStartup {
 		}
 		return false;
 	}
-	
+
 	private String whatPageIamAt() {
 		boolean taskURL = driver.getCurrentUrl().contains("/task/show");
 		boolean taskURL2 = driver.getCurrentUrl().contains("/task/new");
