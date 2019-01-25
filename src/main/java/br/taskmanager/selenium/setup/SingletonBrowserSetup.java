@@ -25,7 +25,7 @@ public class SingletonBrowserSetup {
 		driver = new ChromeDriver(options);
 	}
 	
-	public WebDriver getDriver() {
+	public static WebDriver getDriver() {
 		return driver;
 	}
 
