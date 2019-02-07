@@ -41,7 +41,6 @@ public class SeleniumStartup {
 		this.submit = submit;
 		this.refreshRate = refreshRate;
 		this.submitPercentage = submitPercentage;
-
 		SingletonBrowserSetup instance = SingletonBrowserSetup.getInstance(chromeDriverLocation, chromeExeLocation,
 				userDataDirLocation, port);
 		driver = instance.getDriver();
