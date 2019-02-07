@@ -109,7 +109,7 @@ public class TaskDao {
 	}
 
 	public Double sumWeek() {
-		String sql = "SELECT SUM(time) as weekTime FROM task where date BETWEEN datetime('now', '-7 days') AND datetime('now', 'localtime')";
+		String sql = "select sum(time) as weekTime from task where date BETWEEN date('now', 'weekday 0', '-7 days') AND datetime('now', 'localtime')";
 		Double value;
 
 		try {
@@ -126,7 +126,7 @@ public class TaskDao {
 	}
 
 	public Double sumMonth() {
-		String sql = "SELECT sum(time) as monthTime FROM task WHERE date BETWEEN datetime('now', 'start of month') AND datetime('now', 'localtime')";
+		String sql = "SELECT sum(time) as monthTime FROM task WHERE date BETWEEN datetime('now', 'start of month', '-1 days') AND datetime('now', 'localtime', '+1 days')";
 		Double value;
 		try {
 			PreparedStatement stmt = connection.prepareStatement(sql);
