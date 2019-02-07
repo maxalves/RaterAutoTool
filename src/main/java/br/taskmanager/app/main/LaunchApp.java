@@ -29,8 +29,12 @@ public class LaunchApp extends Application {
 		stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent t) {
-            	SingletonBrowserSetup.getDriver().quit();
                 Platform.exit();
+            	try {
+                	SingletonBrowserSetup.getDriver().quit();
+            	} catch (NullPointerException e) {
+            		System.exit(0);
+            	}
             }
 
         });
