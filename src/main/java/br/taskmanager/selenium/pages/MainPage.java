@@ -18,20 +18,24 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class MainPage {
 
 	private WebDriver driver;
-	
+
 	public MainPage(WebDriver driver) {
 		this.driver = driver;
 	}
 
 	public void autoRefreshUntilTask(boolean refresh, Double refreshRate) throws TimeoutException {
 		if (refresh) {
-			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds((long) (refreshRate*2)))
+			Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
+					.withTimeout(Duration.ofSeconds(refreshRate.intValue() * 2))
 					.pollingEvery(Duration.ofSeconds(refreshRate.intValue())).ignoring(NoSuchElementException.class);
 
 			wait.until(new Function<WebDriver, WebElement>() {
 				public WebElement apply(WebDriver driver) {
+					if (driver.findElement(By.cssSelector("div[class='container'] ul")) == null) {
 						driver.navigate().refresh();
-						return driver.findElement(By.cssSelector("div[class='container'] ul"));
+					}
+
+					return driver.findElement(By.cssSelector("div[class='container'] ul"));
 				}
 			});
 		}
@@ -42,8 +46,10 @@ public class MainPage {
 		if (acquire) {
 			WebDriverWait wait = new WebDriverWait(driver, 2);
 			Toolkit.getDefaultToolkit().beep();
-			wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div[class='container'] ul.ewok-rater-task-option>li>a")));
-			driver.findElement(By.cssSelector("div[class='container'] ul.ewok-rater-task-option>li>a")).sendKeys(Keys.ENTER);
+			wait.until(ExpectedConditions
+					.elementToBeClickable(By.cssSelector("div[class='container'] ul.ewok-rater-task-option>li>a")));
+			driver.findElement(By.cssSelector("div[class='container'] ul.ewok-rater-task-option>li>a"))
+					.sendKeys(Keys.ENTER);
 		}
 	}
 }
